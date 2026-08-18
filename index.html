@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muebles el Líbano — Salas, comedores y alcobas | Buga y Cali</title>
+<meta name="description" content="Muebles el Líbano. Salas, sofá camas, camas, comedores, tocadores y nocheros. Sedes en Buga y Cali. Pida por WhatsApp.">
+
+<!-- ================================================================
+     MUEBLES EL LÍBANO
+     Publicar: suba index.html + logo.png (y las fotos) a GitHub,
+     luego Settings > Pages > Source: main.
+
+     TODO LO EDITABLE ESTÁ EN EL BLOQUE "CONFIG" AL FINAL.
+     ================================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --negro:#0A0908;
+  --negro-suave:#131110;
+  --oro-claro:#F7E3A1;
+  --oro:#D4A63C;
+  --crema:#EFE9DD;
+  --humo:rgba(239,233,221,.55);
+  --linea:rgba(212,166,60,.28);
+  --display:'Marcellus',Georgia,serif;
+  --texto:'Jost',system-ui,sans-serif;
+  --oro-degradado:linear-gradient(115deg,#8A6216 0%,#D4A63C 28%,#F7E3A1 50%,#D4A63C 72%,#8A6216 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--negro);color:var(--crema);font-family:var(--texto);
+  font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+.luz{position:fixed;inset:0;pointer-events:none;z-index:0}
+.luz::before{content:'';position:absolute;top:-25vh;left:50%;transform:translateX(-50%);
+  width:120vw;height:90vh;
+  background:radial-gradient(ellipse at center,rgba(212,166,60,.15) 0%,rgba(212,166,60,.05) 38%,transparent 68%)}
+.luz::after{content:'';position:absolute;bottom:-30vh;right:-15vw;width:70vw;height:70vh;
+  background:radial-gradient(circle,rgba(212,166,60,.07) 0%,transparent 65%)}
+.envoltura{position:relative;z-index:1}
+.contenedor{width:min(1180px,92vw);margin-inline:auto}
+
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.12}
+.rotulo{font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;color:var(--oro)}
+.oro-texto{background:var(--oro-degradado);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent}
+
+/* Encabezado */
+.encabezado{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
+  background:rgba(10,9,8,.85);border-bottom:1px solid rgba(212,166,60,.16)}
+.encabezado .interior{display:flex;align-items:center;gap:1.4rem;padding:.8rem 0}
+.marca{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:inherit;margin-right:auto}
+.marca img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.marca-nombre{font-family:var(--display);font-size:1rem;letter-spacing:.04em;line-height:1.1}
+.marca-sub{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--oro)}
+.menu{display:flex;gap:1.8rem}
+.menu a{color:var(--humo);text-decoration:none;font-size:.8rem;letter-spacing:.14em;
+  text-transform:uppercase;transition:color .25s}
+.menu a:hover,.menu a:focus-visible{color:var(--oro-claro)}
+
+/* Botones */
+.boton{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+  padding:.85rem 1.7rem;border-radius:2px;border:0;cursor:pointer;
+  font-family:var(--texto);font-size:.78rem;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;text-decoration:none;transition:transform .25s,box-shadow .25s,background .25s,color .25s}
+.boton-oro{background:var(--oro-degradado);color:#1A1206}
+.boton-oro:hover,.boton-oro:focus-visible{transform:translateY(-2px);box-shadow:0 10px 32px rgba(212,166,60,.28)}
+.boton-linea{background:transparent;color:var(--oro-claro);border:1px solid var(--linea)}
+.boton-linea:hover,.boton-linea:focus-visible{border-color:var(--oro);background:rgba(212,166,60,.08)}
+.boton svg{width:17px;height:17px;flex:none}
+
+/* Portada */
+.portada{padding:clamp(3rem,8vw,6rem) 0 clamp(2rem,5vw,3.5rem);text-align:center}
+.sello{width:clamp(140px,28vw,200px);height:clamp(140px,28vw,200px);margin:0 auto 2.2rem;
+  border-radius:50%;position:relative;display:grid;place-items:center;animation:aparecer 1.1s ease both}
+.sello::after{content:'';position:absolute;inset:-14px;border-radius:50%;border:1px solid var(--linea)}
+.sello img{width:100%;height:100%;border-radius:50%;object-fit:cover;box-shadow:0 0 65px rgba(212,166,60,.22)}
+.portada h1{font-size:clamp(2.2rem,6vw,4rem);margin-bottom:1.2rem}
+.portada .entrada{max-width:46ch;margin:0 auto 2.2rem;color:var(--humo);font-size:clamp(1rem,2vw,1.08rem)}
+.portada .acciones{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+
+/* Selector de sede — el cliente escoge a qué tienda le escribe */
+.sedes{padding:1.6rem 0 0;text-align:center}
+.sedes .rotulo{display:block;margin-bottom:.9rem;font-size:.62rem}
+.sedes-fila{display:inline-flex;gap:.5rem;padding:.35rem;border:1px solid var(--linea);
+  border-radius:3px;background:rgba(19,17,16,.7);flex-wrap:wrap;justify-content:center}
+.sede-boton{background:transparent;border:0;cursor:pointer;color:var(--humo);
+  font-family:var(--texto);font-size:.78rem;letter-spacing:.11em;text-transform:uppercase;
+  padding:.7rem 1.4rem;border-radius:2px;transition:background .3s,color .3s;line-height:1.4}
+.sede-boton span{display:block;font-size:.62rem;letter-spacing:.05em;text-transform:none;opacity:.6;margin-top:.15rem}
+.sede-boton[aria-pressed="true"]{background:var(--oro-degradado);color:#1A1206}
+.sede-boton[aria-pressed="true"] span{opacity:.75}
+
+/* Secciones */
+.seccion{padding:clamp(3rem,7vw,5.5rem) 0}
+.cabeza{text-align:center;margin-bottom:2.4rem}
+.cabeza .rotulo{display:block;margin-bottom:.9rem}
+.cabeza h2{font-size:clamp(1.8rem,4.4vw,2.9rem);margin-bottom:.9rem}
+.cabeza p{color:var(--humo);max-width:52ch;margin-inline:auto;font-size:.97rem}
+
+/* Filtros por categoría */
+.filtros{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.6rem}
+.filtro{background:transparent;border:1px solid rgba(212,166,60,.2);color:var(--humo);
+  cursor:pointer;font-family:var(--texto);font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;padding:.6rem 1.1rem;border-radius:2px;transition:all .28s}
+.filtro:hover{border-color:var(--oro);color:var(--oro-claro)}
+.filtro[aria-pressed="true"]{background:var(--oro-degradado);color:#1A1206;border-color:transparent}
+
+/* Catálogo */
+.rejilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.6rem}
+.pieza{background:var(--negro-suave);border:1px solid rgba(212,166,60,.14);border-radius:3px;
+  overflow:hidden;display:flex;flex-direction:column;transition:border-color .35s,transform .35s}
+.pieza:hover{border-color:var(--linea);transform:translateY(-4px)}
+.pieza-foto{position:relative;aspect-ratio:4/5;overflow:hidden;display:grid;place-items:center;
+  background:radial-gradient(circle at 50% 42%,rgba(212,166,60,.13),rgba(10,9,8,1) 72%)}
+.pieza-foto img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.pieza:hover .pieza-foto img{transform:scale(1.045)}
+.marca-agua{width:44%;max-width:130px;opacity:.3;height:auto!important}
+.etiqueta{position:absolute;top:.8rem;left:.8rem;font-size:.6rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--oro-claro);background:rgba(10,9,8,.78);
+  border:1px solid var(--linea);padding:.3rem .6rem;border-radius:2px}
+.pieza-cuerpo{padding:1.4rem 1.4rem 1.5rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
+.pieza h3{font-size:1.28rem}
+.medidas{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--humo)}
+.precio{font-family:var(--display);font-size:1.4rem;margin-top:.25rem}
+.pieza .boton{margin-top:auto;width:100%;padding-top:.9rem;padding-bottom:.9rem}
+.pieza-cuerpo .relleno{flex:1}
+
+/* Vitrina de videos */
+.vitrina{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1.3rem;
+  max-width:960px;margin-inline:auto}
+.reel{position:relative;aspect-ratio:9/16;border-radius:3px;overflow:hidden;
+  border:1px solid rgba(212,166,60,.18);background:linear-gradient(165deg,#171412,#0A0908);
+  display:grid;place-items:center;cursor:pointer;transition:border-color .35s,transform .35s}
+.reel:hover{border-color:var(--oro);transform:translateY(-4px)}
+.reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.reel-vacio{text-align:center;padding:1.5rem;color:var(--humo);font-size:.8rem;line-height:1.5}
+.reel-vacio svg{width:34px;height:34px;margin-bottom:.8rem;opacity:.55}
+
+/* Botón de sonido sobre cada video */
+.sonido{position:absolute;right:.6rem;bottom:.6rem;z-index:3;
+  width:38px;height:38px;border-radius:50%;border:1px solid rgba(212,166,60,.45);
+  background:rgba(10,9,8,.72);backdrop-filter:blur(6px);
+  color:var(--oro-claro);display:grid;place-items:center;cursor:pointer;
+  transition:background .3s,transform .3s,border-color .3s}
+.sonido:hover,.sonido:focus-visible{background:rgba(10,9,8,.92);border-color:var(--oro);transform:scale(1.07)}
+.sonido svg{width:19px;height:19px}
+.sonido .con-sonido{display:none}
+.sonido[aria-pressed="true"] .sin-sonido{display:none}
+.sonido[aria-pressed="true"] .con-sonido{display:block}
+.sonido[aria-pressed="true"]{background:var(--oro-degradado);color:#14100A;border-color:transparent}
+.vitrina-pie{text-align:center;margin-top:2.4rem}
+
+/* Franja */
+.franja{border-block:1px solid rgba(212,166,60,.16);padding:clamp(2.4rem,6vw,3.4rem) 0}
+.rejilla-tres{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:2.2rem;text-align:center}
+.franja h3{font-size:1.16rem;margin-bottom:.5rem}
+.franja p{color:var(--humo);font-size:.89rem}
+.franja svg{width:26px;height:26px;color:var(--oro);margin-bottom:.85rem}
+
+/* Sedes en contacto */
+.tarjetas-sede{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.4rem;margin-top:2.6rem;text-align:left}
+.tarjeta-sede{border:1px solid rgba(212,166,60,.18);border-radius:3px;padding:1.7rem;
+  background:var(--negro-suave)}
+.tarjeta-sede h3{font-size:1.22rem;margin-bottom:.3rem}
+.tarjeta-sede .direccion{color:var(--humo);font-size:.9rem;margin-bottom:1.2rem}
+.tarjeta-sede .boton{width:100%}
+
+.contacto{text-align:center}
+.contacto h2{font-size:clamp(1.9rem,4.6vw,3rem);margin-bottom:1.1rem}
+.contacto .entrada{color:var(--humo);max-width:46ch;margin:0 auto}
+
+.pie{padding:2.4rem 0 3rem;text-align:center;border-top:1px solid rgba(212,166,60,.14)}
+.pie img{width:52px;height:52px;border-radius:50%;margin-bottom:1rem;opacity:.9}
+.pie p{font-size:.75rem;color:rgba(239,233,221,.38);letter-spacing:.05em}
+
+.flotante{position:fixed;right:1.15rem;bottom:1.15rem;z-index:60;width:54px;height:54px;
+  border-radius:50%;background:var(--oro-degradado);color:#14100A;display:grid;place-items:center;
+  text-decoration:none;box-shadow:0 8px 26px rgba(0,0,0,.5);transition:transform .28s}
+.flotante:hover,.flotante:focus-visible{transform:scale(1.08)}
+.flotante svg{width:27px;height:27px}
+
+/* ============ ANIMACIONES ============ */
+
+/* Entrada */
+.intro{position:fixed;inset:0;z-index:200;background:var(--negro);
+  display:grid;place-items:center;transition:opacity .9s ease,visibility .9s}
+.intro[hidden]{display:none}
+.intro.fuera{opacity:0;visibility:hidden;pointer-events:none}
+.intro-marca{position:relative;width:154px;height:154px;display:grid;place-items:center}
+.intro-marca img{width:114px;height:114px;border-radius:50%;object-fit:cover;
+  opacity:0;transform:scale(.84);
+  animation:entraLogo 1.05s cubic-bezier(.2,.7,.3,1) .2s both;
+  box-shadow:0 0 60px rgba(212,166,60,.25)}
+.anillo{position:absolute;inset:0;width:154px;height:154px;transform:rotate(-90deg)}
+.anillo circle{fill:none;stroke:var(--oro);stroke-width:1.4;
+  stroke-dasharray:358;stroke-dashoffset:358;
+  animation:dibujaAnillo 1.3s cubic-bezier(.62,0,.36,1) .1s both}
+@keyframes dibujaAnillo{to{stroke-dashoffset:0}}
+@keyframes entraLogo{to{opacity:1;transform:scale(1)}}
+
+/* Secuencia de la portada */
+.anim .paso{opacity:0;transform:translateY(28px);filter:blur(7px)}
+.anim .paso.dentro{opacity:1;transform:none;filter:blur(0);
+  transition:opacity 1s cubic-bezier(.2,.7,.3,1),transform 1s cubic-bezier(.2,.7,.3,1),filter 1s ease}
+
+/* Barrido de luz sobre el título */
+.oro-texto{background-size:220% auto}
+.anim .brillo{animation:brillo 2.6s ease-in-out 1.5s 1 both}
+@keyframes brillo{
+  0%{background-position:-60% center}
+  100%{background-position:160% center}
+}
+
+/* Encabezado que se compacta al bajar */
+.encabezado{transition:background .45s ease,box-shadow .45s ease}
+.encabezado .interior{transition:padding .45s ease}
+.marca img{transition:width .45s ease,height .45s ease}
+.encabezado.compacto{background:rgba(10,9,8,.96);box-shadow:0 6px 26px rgba(0,0,0,.45)}
+.encabezado.compacto .interior{padding:.5rem 0}
+.encabezado.compacto .marca img{width:36px;height:36px}
+
+/* Entrada de las tarjetas del catálogo */
+.anim .pieza{animation:entraPieza .65s cubic-bezier(.2,.7,.3,1) both;
+  animation-delay:calc(var(--i,0) * 65ms)}
+@keyframes entraPieza{
+  from{opacity:0;transform:translateY(24px) scale(.975)}
+  to{opacity:1;transform:none}
+}
+.pieza:hover{box-shadow:0 20px 44px rgba(0,0,0,.5),0 0 0 1px rgba(212,166,60,.22)}
+
+/* Botón flotante: aparece cuando ya se bajó un poco */
+.flotante{opacity:0;transform:scale(.6);pointer-events:none;
+  transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.3,1)}
+.flotante.dentro{opacity:1;transform:scale(1);pointer-events:auto}
+html:not(.anim) .flotante{opacity:1;transform:none;pointer-events:auto}
+
+@keyframes aparecer{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+/* El contenido siempre es visible. La animación solo se activa
+   si el navegador la soporta, para que nada quede en blanco. */
+.revelar{opacity:1;transform:none}
+.anim .revelar{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.anim .revelar.visible{opacity:1;transform:none}
+:focus-visible{outline:2px solid var(--oro);outline-offset:3px}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .revelar{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+@media(max-width:760px){
+  .menu{display:none}
+  .encabezado .boton{padding:.75rem 1.1rem;font-size:.7rem}
+}
+</style>
+</head>
+<body>
+
+<div class="luz"></div>
+
+<!-- Entrada: el anillo se dibuja alrededor del logo y luego se abre la página.
+     Va oculto por defecto: si el JavaScript falla, nunca tapa el contenido. -->
+<div class="intro" id="intro" hidden>
+  <div class="intro-marca">
+    <svg class="anillo" viewBox="0 0 120 120" aria-hidden="true">
+      <circle cx="60" cy="60" r="57"/>
+    </svg>
+    <img src="logo.png" alt="" onerror="this.style.display='none'">
+  </div>
+</div>
+<div class="envoltura">
+
+<header class="encabezado">
+  <div class="contenedor interior">
+    <a class="marca" href="#inicio">
+      <img src="logo.png" alt="Muebles el Líbano" onerror="this.style.display='none'">
+      <span>
+        <span class="marca-nombre">Muebles el Líbano</span><br>
+        <span class="marca-sub">Buga · Cali</span>
+      </span>
+    </a>
+    <nav class="menu">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#videos">Videos</a>
+      <a href="#sedes">Sedes</a>
+    </nav>
+    <a class="boton boton-linea wa" href="#">Escríbanos</a>
+  </div>
+</header>
+
+<main id="inicio">
+
+  <section class="portada contenedor">
+    <div class="sello paso">
+      <img src="logo.png" alt="Logotipo de Muebles el Líbano" onerror="this.parentElement.style.display='none'">
+    </div>
+    <h1 class="paso">Renueve su hogar<br><span class="oro-texto brillo">con estilo</span></h1>
+    <p class="entrada paso">Salas, comedores y alcobas con medidas y precios a la vista. Escoja el suyo y pídalo por WhatsApp a la sede que le quede más cerca.</p>
+    <div class="acciones paso">
+      <a class="boton boton-oro" href="#catalogo">Ver el catálogo</a>
+      <a class="boton boton-linea wa" href="#">Pedir por WhatsApp</a>
+    </div>
+
+    <div class="sedes paso">
+      <span class="rotulo">Atiende la sede</span>
+      <div class="sedes-fila" id="selector-sedes" role="group" aria-label="Escoja la sede que lo atiende"></div>
+    </div>
+  </section>
+
+  <section class="seccion contenedor" id="catalogo">
+    <div class="cabeza revelar">
+      <span class="rotulo">Catálogo</span>
+      <h2>Nuestras piezas</h2>
+      <p>Toque «Pedir por WhatsApp» y el mensaje llega armado a la sede que escogió, con el mueble y las medidas.</p>
+    </div>
+    <div class="filtros" id="filtros" role="group" aria-label="Filtrar por categoría"></div>
+    <div class="rejilla" id="rejilla-catalogo"></div>
+  </section>
+
+  <section class="franja">
+    <div class="contenedor rejilla-tres">
+      <div class="revelar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg>
+        <h3>Muebles a la medida</h3>
+        <p>Ajustamos tamaños, telas y colores al espacio que usted tiene.</p>
+      </div>
+      <div class="revelar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <h3>Entrega a domicilio</h3>
+        <p>Llevamos e instalamos su mueble desde nuestras sedes de Buga y Cali.</p>
+      </div>
+      <div class="revelar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2l8 4v6c0 5-3.4 9.2-8 10-4.6-.8-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+        <h3>Garantía por escrito</h3>
+        <p>Respaldamos la estructura y los acabados de cada pieza.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion contenedor" id="videos">
+    <div class="cabeza revelar">
+      <span class="rotulo">Vitrina</span>
+      <h2>Véalos por dentro</h2>
+      <p>Los muebles se entienden mejor en movimiento: la tela, el brillo de la madera, el tamaño real en una sala.</p>
+    </div>
+    <div class="vitrina" id="vitrina-videos"></div>
+    <div class="vitrina-pie revelar">
+      <a class="boton boton-linea" id="cta-instagram" href="#" target="_blank" rel="noopener">Ver más en Instagram</a>
+    </div>
+  </section>
+
+  <section class="seccion contacto contenedor" id="sedes">
+    <div class="revelar">
+      <span class="rotulo">Sedes</span>
+      <h2 style="margin-top:.9rem">Visítenos o escríbanos</h2>
+      <p class="entrada">Dos sedes para atenderlo. Escriba a la que le quede más cerca y le confirmamos disponibilidad, entrega y formas de pago.</p>
+      <div class="tarjetas-sede" id="tarjetas-sede"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <img src="logo.png" alt="" onerror="this.style.display='none'">
+  <p>Muebles el Líbano · Buga y Cali, Valle del Cauca</p>
+</footer>
+
+</div>
+
+<a class="flotante wa" href="#" aria-label="Escribir por WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2"/></svg>
+</a>
+
+<script>
+/* ==================================================================
+   CONFIG — EDITE SOLO ESTE BLOQUE
+   ================================================================== */
+const CONFIG = {
+
+  /* ---- SEDES ----
+     Los números ya están tomados del perfil de Instagram.
+     Verifíquelos con el cliente antes de publicar.               */
+  sedes: [
+    { id:"buga", nombre:"Buga",  detalle:"Crra 9 #10-58", telefono:"573154354332" },
+    { id:"cali", nombre:"Cali",  detalle:"Alameda, Calle 9 #22-02", telefono:"573122040887" }
+  ],
+
+  instagram:"https://www.instagram.com/muebles_ellibano/",
+  horario:"Lun a Sáb · 9:00 a.m. – 6:00 p.m.",
+
+  /* ---- CATEGORÍAS ----
+     Son las mismas de las historias destacadas del perfil.       */
+  categorias:["Salas","Sofá camas","Camas","Comedores"],
+
+  /* ---- PRODUCTOS ----
+     FALTAN LOS PRECIOS Y LAS MEDIDAS REALES.
+     Pídaselos al cliente y escríbalos aquí. Mientras estén
+     vacíos, la tarjeta dice "Consultar por WhatsApp".        */
+  productos: [
+    { nombre:"Sala esquinera gris",        categoria:"Salas",      medidas:"", precio:"", foto:"fotos/sala-esquinera-gris.jpg" },
+    { nombre:"Sala esquinera reclinable",  categoria:"Salas",      medidas:"", precio:"", foto:"fotos/sala-esquinera-beige.jpg" },
+    { nombre:"Sofá dos puestos",           categoria:"Salas",      medidas:"", precio:"", foto:"fotos/sofa-dos-puestos-azul.jpg" },
+    { nombre:"Sofá cama esquinero",        categoria:"Sofá camas", medidas:"", precio:"", foto:"fotos/sofa-cama-esquinero.jpg" },
+    { nombre:"Sofá cama dos puestos",      categoria:"Sofá camas", medidas:"", precio:"", foto:"fotos/sofa-cama-beige.jpg" },
+    { nombre:"Sofá cama extensible",       categoria:"Sofá camas", medidas:"", precio:"", foto:"fotos/sofa-cama-abierto.jpg" },
+    { nombre:"Base cama con cabecero",     categoria:"Camas",      medidas:"", precio:"", foto:"fotos/cama-base-cabecero-gris.jpg" },
+    { nombre:"Alcoba con cabecero espejo", categoria:"Camas",      medidas:"", precio:"", foto:"fotos/alcoba-cabecero-cobre.jpg" },
+    { nombre:"Cabecero negro con espejos", categoria:"Camas",      medidas:"", precio:"", foto:"fotos/cabecero-negro-espejo.jpg" },
+    { nombre:"Cabecero blanco capitoneado",categoria:"Camas",      medidas:"", precio:"", foto:"fotos/cabecero-blanco.jpg" },
+    { nombre:"Comedor redondo 4 puestos",  categoria:"Comedores",  medidas:"", precio:"", foto:"fotos/comedor-redondo.jpg" },
+    { nombre:"Comedor mármol 4 puestos",   categoria:"Comedores",  medidas:"", precio:"", foto:"fotos/comedor-marmol.jpg" }
+  ],
+
+  /* ---- VIDEOS ---- */
+  videos: [
+    { archivo:"videos/video-1.mp4", poster:"videos/poster-1.jpg", titulo:"Nuestros muebles" },
+    { archivo:"videos/video-2.mp4", poster:"videos/poster-2.jpg", titulo:"Sofá cama" },
+    { archivo:"videos/video-3.mp4", poster:"videos/poster-3.jpg", titulo:"Showroom" }
+  ]
+};
+/* ================= FIN DEL BLOQUE EDITABLE ======================= */
+
+
+let sedeActiva = CONFIG.sedes[0];
+
+const iconoWA = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.2.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4M12 2a10 10 0 00-8.6 15L2 22l5.2-1.4A10 10 0 1012 2"/></svg>`;
+
+const waLink = (texto, tel) =>
+  `https://wa.me/${tel || sedeActiva.telefono}?text=${encodeURIComponent(texto)}`;
+
+const saludo = () =>
+  `Hola, buen día. Vi su catálogo en internet y quisiera más información. (Sede ${sedeActiva.nombre})`;
+
+/* --- Selector de sede --- */
+document.getElementById("selector-sedes").innerHTML = CONFIG.sedes.map(s=>`
+  <button class="sede-boton" data-sede="${s.id}" aria-pressed="${s.id===sedeActiva.id}">
+    ${s.nombre}<span>${s.detalle}</span>
+  </button>`).join("");
+
+document.querySelectorAll(".sede-boton").forEach(b=>{
+  b.addEventListener("click",()=>{
+    sedeActiva = CONFIG.sedes.find(s=>s.id===b.dataset.sede);
+    document.querySelectorAll(".sede-boton").forEach(o=>
+      o.setAttribute("aria-pressed", o.dataset.sede===sedeActiva.id));
+    pintarCatalogo();
+    actualizarEnlacesGenerales();
+  });
+});
+
+function actualizarEnlacesGenerales(){
+  document.querySelectorAll("a.wa").forEach(a=>{
+    a.href = waLink(saludo());
+    a.target = "_blank"; a.rel = "noopener";
+  });
+}
+actualizarEnlacesGenerales();
+
+document.getElementById("cta-instagram").href = CONFIG.instagram;
+
+/* --- Filtros --- */
+let filtroActivo = "Todos";
+const todasLasCategorias = ["Todos", ...CONFIG.categorias];
+
+document.getElementById("filtros").innerHTML = todasLasCategorias.map(c=>`
+  <button class="filtro" data-cat="${c}" aria-pressed="${c===filtroActivo}">${c}</button>`).join("");
+
+document.querySelectorAll(".filtro").forEach(b=>{
+  b.addEventListener("click",()=>{
+    filtroActivo = b.dataset.cat;
+    document.querySelectorAll(".filtro").forEach(o=>
+      o.setAttribute("aria-pressed", o.dataset.cat===filtroActivo));
+    pintarCatalogo();
+  });
+});
+
+/* --- Catálogo --- */
+const marcaAgua = `<img class="marca-agua" src="logo.png" alt="" onerror="this.remove()">`;
+
+function pintarCatalogo(){
+  const lista = filtroActivo==="Todos"
+    ? CONFIG.productos
+    : CONFIG.productos.filter(p=>p.categoria===filtroActivo);
+
+  document.getElementById("rejilla-catalogo").innerHTML = lista.map((p,i)=>{
+    const mensaje = `Hola, buen día. Estoy interesado en el ${p.nombre}${p.medidas ? " ("+p.medidas+")" : ""}. ¿Me dan precio y disponibilidad? (Sede ${sedeActiva.nombre})`;
+    const visual = p.foto
+      ? `<img src="${p.foto}" alt="${p.nombre}" loading="lazy">`
+      : marcaAgua;
+    const lineaMedidas = p.medidas ? `<span class="medidas">${p.medidas}</span>` : "";
+    const lineaPrecio = p.precio
+      ? `<span class="precio oro-texto">${p.precio}</span>`
+      : `<span class="medidas" style="letter-spacing:.1em">Consultar precio</span>`;
+    return `
+    <article class="pieza revelar visible" style="--i:${i}">
+      <div class="pieza-foto">${visual}<span class="etiqueta">${p.categoria}</span></div>
+      <div class="pieza-cuerpo">
+        <h3>${p.nombre}</h3>
+        ${lineaMedidas}
+        ${lineaPrecio}
+        <div class="relleno"></div>
+        <a class="boton boton-oro" href="${waLink(mensaje)}" target="_blank" rel="noopener">
+          ${iconoWA} Pedir a ${sedeActiva.nombre}
+        </a>
+      </div>
+    </article>`;
+  }).join("");
+}
+pintarCatalogo();
+
+/* --- Tarjetas de sede --- */
+document.getElementById("tarjetas-sede").innerHTML = CONFIG.sedes.map(s=>`
+  <div class="tarjeta-sede">
+    <h3>Sede ${s.nombre}</h3>
+    <p class="direccion">${s.detalle}<br>${CONFIG.horario}</p>
+    <a class="boton boton-oro" href="${waLink('Hola, buen día. Quisiera información sobre sus muebles. (Sede '+s.nombre+')', s.telefono)}" target="_blank" rel="noopener">
+      ${iconoWA} Escribir a ${s.nombre}
+    </a>
+  </div>`).join("");
+
+/* --- Videos --- */
+const iconoSonido = `
+  <svg class="sin-sonido" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+    <path d="M11 5L6 9H2v6h4l5 4z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
+  <svg class="con-sonido" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round">
+    <path d="M11 5L6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 010 7M18.5 5.5a9 9 0 010 13"/></svg>`;
+
+document.getElementById("vitrina-videos").innerHTML = CONFIG.videos.map((v,i)=>{
+  if(v.archivo){
+    const poster = v.poster ? ` poster="${v.poster}"` : "";
+    return `<div class="reel revelar">
+      <video src="${v.archivo}"${poster} muted loop playsinline preload="metadata" aria-label="${v.titulo}"></video>
+      <button class="sonido" type="button" aria-pressed="false" aria-label="Activar el sonido de ${v.titulo}">${iconoSonido}</button>
+    </div>`;
+  }
+  return `<div class="reel revelar">
+    <div class="reel-vacio">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="2" y="4" width="14" height="16" rx="2"/><path d="M16 10l6-3v10l-6-3z"/></svg>
+      ${v.titulo}<br><span style="opacity:.6">Espacio para su video</span>
+    </div>
+  </div>`;
+}).join("");
+
+const videos = [...document.querySelectorAll(".reel video")];
+
+/* Solo un video con sonido a la vez */
+function silenciarOtros(actual){
+  videos.forEach(v=>{
+    if(v!==actual){
+      v.muted = true;
+      const b = v.parentElement.querySelector(".sonido");
+      if(b) b.setAttribute("aria-pressed","false");
+    }
+  });
+}
+
+videos.forEach(video=>{
+  const caja = video.parentElement;
+  const boton = caja.querySelector(".sonido");
+  const play = ()=> video.play().catch(()=>{});
+
+  /* En computador: se reproduce al pasar el mouse */
+  caja.addEventListener("mouseenter", play);
+  caja.addEventListener("mouseleave", ()=>{ if(video.muted) video.pause(); });
+
+  /* Tocar el video lo pausa o lo reanuda */
+  caja.addEventListener("click", e=>{
+    if(e.target.closest(".sonido")) return;
+    video.paused ? play() : video.pause();
+  });
+
+  /* Botón de sonido */
+  boton.addEventListener("click", ()=>{
+    const encender = video.muted;
+    if(encender){
+      silenciarOtros(video);
+      video.muted = false;
+      video.volume = 1;
+      play();
+    }else{
+      video.muted = true;
+    }
+    boton.setAttribute("aria-pressed", String(encender));
+    boton.setAttribute("aria-label",
+      (encender ? "Quitar el sonido de " : "Activar el sonido de ") + video.getAttribute("aria-label"));
+  });
+});
+
+/* En celular no hay mouse: se reproducen al entrar en pantalla */
+if("IntersectionObserver" in window && videos.length){
+  const obsVideo = new IntersectionObserver(entradas=>{
+    entradas.forEach(e=>{
+      const v = e.target;
+      if(e.isIntersecting) v.play().catch(()=>{});
+      else { v.pause(); if(!v.muted) v.muted = true; }
+    });
+  },{threshold:.6});
+  videos.forEach(v=>obsVideo.observe(v));
+}
+
+/* --- Animaciones --- */
+const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+if(reduce || !("IntersectionObserver" in window)){
+  /* Sin animación: todo queda visible tal cual */
+}else{
+  document.documentElement.classList.add("anim");
+
+  /* Entrada: anillo + logo, y luego se abre la portada */
+  const intro = document.getElementById("intro");
+  const pasos = [...document.querySelectorAll(".paso")];
+
+  const abrirPortada = ()=> pasos.forEach((el,i)=>
+    setTimeout(()=> el.classList.add("dentro"), i*130));
+
+  if(intro){
+    intro.hidden = false;
+    document.body.style.overflow = "hidden";
+
+    const cerrar = ()=>{
+      if(intro.dataset.cerrado) return;
+      intro.dataset.cerrado = "1";
+      intro.classList.add("fuera");
+      document.body.style.overflow = "";
+      abrirPortada();
+      setTimeout(()=> intro.remove(), 1000);
+    };
+
+    setTimeout(cerrar, 1900);
+    /* Seguro: pase lo que pase, la entrada se quita */
+    setTimeout(cerrar, 4500);
+    intro.addEventListener("click", cerrar);
+  }else{
+    abrirPortada();
+  }
+
+  /* Encabezado compacto al bajar + botón flotante */
+  const encabezado = document.querySelector(".encabezado");
+  const flotante = document.querySelector(".flotante");
+  const alBajar = ()=>{
+    const y = window.scrollY;
+    encabezado.classList.toggle("compacto", y > 60);
+    flotante.classList.toggle("dentro", y > 320);
+  };
+  window.addEventListener("scroll", alBajar, {passive:true});
+  alBajar();
+
+  /* Revelado por secciones */
+  const obs = new IntersectionObserver((entradas)=>{
+    entradas.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=> e.target.classList.add("visible"), i*70);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:.12,rootMargin:"0px 0px -60px 0px"});
+  document.querySelectorAll(".revelar").forEach(el=>obs.observe(el));
+}
+</script>
+</body>
+</html>
